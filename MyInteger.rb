@@ -18,6 +18,10 @@ class Integer
 		true
 	end
 
+	def isPalindromic?
+		self.to_s==self.to_s.reverse
+	end
+
 	def primeFactors
 		Prime.upto(Math.sqrt(self).to_i) {|num| yield num if num.isFactorOf? self}
 	end
