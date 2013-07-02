@@ -21,24 +21,28 @@ class Integer
 		true
 	end
 	def multiplicityOf primeFactor
-		exp = 1
-		factor = primeFactor
-		while factor.isFactorOf? self
-			exp += 1
-			factor *= primeFactor
+		remainer = self
+		exponent = 0
+		while primeFactor.isFactorOf? remainer
+			remainer /= primeFactor
+			exponent += 1
 		end
-		exp-1
+		[exponent, remainer]
+	end
+	def primeFactorsAndMultiplicities
+		factors = []
+		selfRemainer = self
+		Prime.upto(Math.sqrt(self).to_i) {|num|
+			multiplicity, selfRemainer = selfRemainer.multiplicityOf(num)
+			factors.push([num, multiplicity]) if multiplicity!=0
+		}
+		factors.push([selfRemainer, 1]) if selfRemainer!=1
+		factors	
 	end
 	def primeFactors
 		factors = []
-		Prime.upto(self) {|num| factors.push num if num.isFactorOf? self}
+		primeFactorsAndMultiplicities.each{|factor, multiplicity| factors.push factor}
 		factors
 	end
-	def primeFactorsAndMultiplicities
-		factors = primeFactors
-		factors.each_with_index {|factor, index|
-			factors[index] = [factor, multiplicityOf(factor)]
-		}
-		factors	
-	end
+
 end
