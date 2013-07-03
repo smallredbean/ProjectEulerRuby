@@ -13,7 +13,7 @@ class Prime
 
 		# generate primes in [from, to]
 		primes = []
-		prime = from
+		prime = [from, 2].max
 		while true
 			prime += 1 until table[prime]==true
 			break if prime>to
@@ -28,5 +28,19 @@ class Prime
 
 	def Prime.upto max
 		(Prime.within 2, max).each {|prime| yield prime}
+	end
+
+	def Prime.firstFew amount
+		primes = []
+		blockFrom = 2
+		blockTo = 1024
+
+		begin
+			primes += Prime.within blockFrom, blockTo, primes
+			blockFrom = blockTo+1
+			blockTo = primes.last*primes.last
+		end while primes.length<amount
+
+		primes[0...amount]
 	end
 end
