@@ -44,5 +44,9 @@ class Integer
 		primeFactorsAndMultiplicities.each{|factor, multiplicity| factors.push factor}
 		factors
 	end
-
+	def factorsNumber
+		number = 1
+		primeFactorsAndMultiplicities.each{|factor, multiplicity| number *= (multiplicity+1)}
+		number
+	end
 end
