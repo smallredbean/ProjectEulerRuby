@@ -54,9 +54,11 @@ class Integer
 		to_s.each_char {|ch| return true if ch=='0'}
 		false
 	end
-	def hasDigitInDuplicate
-		digitShown = Array.new(10, false)
+	def hasDigitInDuplicate base=10
+		# By default check all, i.e., '0'-'9'
+		digitShown = Array.new(base, false)
 		to_s.each_char {|ch|
+			return nil if ch.to_i>=base
 			return true if digitShown[ch.to_i]
 			digitShown[ch.to_i] = true
 		}
