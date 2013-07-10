@@ -9,8 +9,8 @@ class Integer
 		self%2==1
 	end
 
-	def isPalindromic?
-		self.to_s==self.to_s.reverse
+	def isPalindromic? base=10
+		self.to_s(base)==self.to_s(base).reverse
 	end
 
 	def isFactorOf? anInteger
