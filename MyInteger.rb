@@ -49,4 +49,23 @@ class Integer
 		primeFactorsAndMultiplicities.each{|factor, multiplicity| number *= (multiplicity+1)}
 		number
 	end
+
+	def zeroInDigits
+		to_s.each_char {|ch| return true if ch=='0'}
+		false
+	end
+	def hasDigitInDuplicate
+		digitShown = Array.new(10, false)
+		to_s.each_char {|ch|
+			return true if digitShown[ch.to_i]
+			digitShown[ch.to_i] = true
+		}
+		false
+	end
+	def hasSameDigitAs num
+		digitShown = Array.new(10, false)
+		to_s.each_char {|ch| digitShown[ch.to_i] = true}
+		num.to_s.each_char {|numCh| return true if digitShown[numCh.to_i]}
+		false
+	end
 end
