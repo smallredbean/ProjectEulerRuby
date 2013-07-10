@@ -1,15 +1,6 @@
 #!/usr/bin/env ruby
 
-class String
-	def hasCharacterInDuplicate
-		presence = Hash.new
-		each_char {|ch|
-			return true if presence[ch]
-			presence[ch] = true
-		}
-		false
-	end
-end
+require "MyString"
 
 max = 0
 (1...10**4).each {|n|
