@@ -70,4 +70,13 @@ class Integer
 		num.to_s.each_char {|numCh| return true if digitShown[numCh.to_i]}
 		false
 	end
+
+	def isLychrelUnderIterations? max
+		value = self
+		max.times {
+			value += value.to_s.reverse.to_i
+			return false if value.isPalindromic?
+		}
+		true
+	end
 end
